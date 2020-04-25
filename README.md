@@ -11,9 +11,9 @@ Da biste provjerili svoj rank na serveru, kucajte `a!rank`.<br>
 Listu komandi možete provjeriti komandom `a!help`.<br>
 Neke komande ovog bota su:
 <ul style="list-style-type:circle;">
-  <li>`a!invite` - invite link od Acticord bota!</li>
-  <li>`a!rank [@član (neobavezno)]` - ispis informacija o članu!</li>
-  <li>`a!leaderboard` - leaderboard!</li>
-  <li>`a!levelup [@član (neobavezno)]` - ispis preostalog XPa za sljedeći level!</li>
-  <li>`a!resetall` - resetovanje aktivnosti servera (samo vlasnik)</li>
+  <li>a!invite - invite link od Acticord bota!</li>
+  <li>a!rank [@član (neobavezno)] - ispis informacija o članu!</li>
+  <li>a!leaderboard - leaderboard!</li>
+  <li>a!levelup [@član (neobavezno)] - ispis preostalog XPa za sljedeći level!</li>
+  <li>a!resetall - resetovanje aktivnosti servera (samo vlasnik)</li>
 </ul>
