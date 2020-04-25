@@ -15,5 +15,5 @@ Neke komande ovog bota su:
   <li>a!rank [@član (neobavezno)] - ispis informacija o članu!</li>
   <li>a!leaderboard - leaderboard!</li>
   <li>a!levelup [@član (neobavezno)] - ispis preostalog XPa za sljedeći level!</li>
-  <li>a!resetall - resetovanje aktivnosti servera (samo vlasnik)</li>
+  <li>a!resetall - resetovanje aktivnosti servera (samo vlasnik).</li>
 </ul>
