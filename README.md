@@ -3,7 +3,7 @@
 Acticord
 ======
 **Acticord** je Discord bot namijenjen za praćenje aktivnosti članova na serveru.<br>
-Prefix ovog bota je `a`.
+Prefix ovog bota je `a!`.
 Neprestano se razvijaju njegove funkcije.<br>
 Svaka poruka nosi `1xp`.<br>
 Vikendom se aktivira **Double Weekend** event kojim 1 poruka vrijedi `2xp`.<br>
