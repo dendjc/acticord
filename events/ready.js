@@ -14,12 +14,12 @@ module.exports = async (client) => {
   
   client.user.setActivity(client.config.name + " || " + client.config.prefix + "help");
   
-  cron.schedule("59 23 * * Friday", () => {
-  client.guilds.forEach(guild => {
-    (async() => {
-      let channeldb = await db.fetch(`stats_${guild.id}_channel`);
+  cron.schedule("0 0 * * Saturday", async() => {
+    let channels = db.all().filter(data => data.ID.endsWith("_channel"));
+    for(let i = 0; i < channels.length; i++) {
+      let channeldb = await db.fetch(channels[i].ID);
       if(channeldb !== null) {
-        let channel = guild.channels.cache.get(channeldb) || await guild.channels.fetch(channeldb);
+        let channel = client.channels.cache.get(channeldb) || await client.channels.fetch(channeldb);
         if(channel) {
           let embed = new Discord.MessageEmbed()
           .setTitle("Double Weekend event!")
@@ -32,7 +32,14 @@ module.exports = async (client) => {
           channel.send(embed);
         }
       }
-    })()
-  });
-  });
+    }
+    let stats = await db.all().filter(data => data.ID.startsWith("stats_"));
+    for(let i = 0; i < stats.length; i++) {
+      let gg = client.guilds.cache.get(stats[i].ID.split("_")[1]);
+      if(gg) {
+        let member = gg.members.cache.get(stats[i].ID.split("_")[2]);
+        if(!member) db.delete(stats[i].ID);
+      }
+    }
+  })
 }

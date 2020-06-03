@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
-const hastebin = 0;
+const hastebin = require("hastebin-gen");
+const commit = require("../commit.js");
 
 exports.run = async (client, message, args) => {
   try {
-    if(message.author.id !== client.config.dev && message.author.id !== "649708455342505984") return;
-    message.delete();
+    if(message.author.id !== client.config.dev) return;
     function clean(text) {
         if (typeof (text) === 'string') {
             return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
@@ -28,8 +28,13 @@ exports.run = async (client, message, args) => {
         }
         return input;
     }
+    let noembed = false;
     try {
         let code = args.join(' ');
+        if(code.indexOf("--noembed") !== -1) {
+          code = code.replace("--noembed", "");
+          noembed = true;
+        }
         let evaled = eval(code);
         let func = token(clean(evaled));
         if (typeof func !== 'string') {
@@ -38,7 +43,7 @@ exports.run = async (client, message, args) => {
         const output = '```js\n' + func + '\n```';
         const Input = '```js\n' + message.content.slice(6) + '\n```';
         let type = typeof (evaled);
-        if (func.length < 1000) {
+        if (func.length < 1000 && !noembed) {
             const embed = new Discord.MessageEmbed()
                 .addField('EVAL', `**Vrsta:** ${type}`)
                 .addField(':inbox_tray: Ulaz', Input)
@@ -46,7 +51,7 @@ exports.run = async (client, message, args) => {
                 .setColor(0x80FF00)
                 .setTimestamp();
             message.channel.send({embed}).then(msg => msg.delete({ timeout: 10000 }));
-        } else {
+        } else if(!noembed) {
             hastebin(func, { extension: ".txt" })
                 .then(res => {
                     const embed = new Discord.MessageEmbed()
@@ -70,14 +75,14 @@ exports.run = async (client, message, args) => {
         let errIns = require('util').inspect(err);
         const error = '```js\n' + errIns + '\n```';
         const Input = '```js\n' + message.content.slice(6) + '\n```';
-        if (errIns.length < 1000) {
+        if (errIns.length < 1000 && !noembed) {
             const embed = new Discord.MessageEmbed()
                 .addField('EVAL', `**Vrsta:** Error`)
                 .addField(':inbox_tray: Ulaz', Input)
                 .addField(':x: ERROR', error, true)
                 .setColor(0x80FF00);
             message.channel.send({embed}).then(msg => msg.delete({ timeout: 10000 }));
-        } else {
+        } else if(!noembed) {
             hastebin(errIns, { extension: ".txt" })
                 .then(res => {
                     const embed = new Discord.MessageEmbed()

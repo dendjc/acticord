@@ -15,9 +15,12 @@
     "quick.db": "^7.1.1",
     "enmap": "^5.2.4",
     "ms": "^2.1.2",
-    "jimp": "^0.10.3",
     "node-cron": "^2.0.3",
-    "dblapi.js": "^2.4.0"
+    "dblapi.js": "^2.4.0",
+    "hastebin-gen": "^2.0.5",
+    "canvas": "^2.6.1",
+    "mysql": "^2.18.1",
+    "quick.db-extended": "^7.1.11"
   },
   "engines": {
     "node": "12.x"

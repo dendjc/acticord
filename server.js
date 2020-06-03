@@ -44,6 +44,13 @@ const config = require("./config.json");
 client.config = config;
 const DBL = require("dblapi.js");
 client.dbl = new DBL(process.env.DBL_TOKEN, [client]);
+const mysql = require("mysql");
+client.con = mysql.createConnection({
+  host: "mysql.freehostia.com",
+  user: "edoedo27_db210",
+  password: process.env.DB1PASSWORD,
+  database: "edoedo27_db210"
+});
 
 fs.readdir("./events/", (err, files) => {
   if(err) return console.error(err);

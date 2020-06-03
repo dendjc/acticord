@@ -5,6 +5,7 @@ module.exports = (client, guild) => {
   if(channel) {
     let embed = new Discord.MessageEmbed()
     .setTitle("💻 Novi server je ubacio Acticord bota!")
+    .setThumbnail(guild.iconURL())
     .setColor("BLUE")
     .addField("Ime servera", guild.name)
     .addField("ID servera", guild.id)

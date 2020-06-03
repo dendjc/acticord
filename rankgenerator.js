@@ -1,51 +1,66 @@
-const jimp = require("jimp");
+const fs = require('fs'); 
+const { createCanvas, loadImage } = require('canvas'); 
 
-module.exports = async (name, guild, user, rank, level, xp) => {
-  let font = await jimp.loadFont(jimp.FONT_SANS_32_WHITE);
-  let font2 = await jimp.loadFont(jimp.FONT_SANS_16_WHITE);
-  let background = await jimp.read("https://apis.eu.org/content/images/acticordbackground.png");
-  let mask = await jimp.read("https://apis.eu.org/content/images/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png");
-  let tagWidth = jimp.measureText(font, user.tag);
-  let rankWidth = jimp.measureText(font, "#" + rank);
-  let servernameWidth = jimp.measureText(font, guild.name);
-  let levelWidth = jimp.measureText(font, level);
-  let experienceWidth = jimp.measureText(font, xp);
-  await jimp.read(user.displayAvatarURL({ format: "png" }))
-    .then(async avatar => {
-      avatar.resize(212, 212);
-      mask.resize(212, 212);
-      avatar.mask(mask, 0, 0);
-      background.composite(avatar, 50, 43);
-      background.print(font, 50 + tagWidth / 2 - tagWidth / 16, -65,
-        {
-          text: user.tag,
-          alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,
-          alignmentY: jimp.VERTICAL_ALIGN_MIDDLE
-        }, 906, 293);
-      background.print(font, 40 + rankWidth / 2 - rankWidth / 16, -12,
-        {
-          text: "#" + rank,
-          alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,
-          alignmentY: jimp.VERTICAL_ALIGN_MIDDLE
-        }, 906, 293);
-      background.print(font, 20 + levelWidth / 2 - levelWidth / 12, 35,
-        {
-          text: level,
-          alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,
-          alignmentY: jimp.VERTICAL_ALIGN_MIDDLE
-        }, 906, 293);
-      background.print(font, -35 + experienceWidth / 2 - experienceWidth / 12, 83,
-        {
-          text: xp,
-          alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,
-          alignmentY: jimp.VERTICAL_ALIGN_MIDDLE
-        }, 906, 293);
-      background.print(font2, -443 + servernameWidth / 2 - servernameWidth / 4, 130,
-        {
-          text: guild.name,
-          alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,
-          alignmentY: jimp.VERTICAL_ALIGN_MIDDLE
-        }, 906, 293);
-      await background.write("/app/temp/" + name + ".png");
-    });
-};
+module.exports = async(name, guild, user, rank, level, xp) => {
+  
+  let canvas = createCanvas(906, 292);
+  let ctx = canvas.getContext("2d");
+
+  await loadImage("https://apis.eu.org/content/images/acticordrank.png")
+  .then(img => { 
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  });
+  
+  await loadImage(user.displayAvatarURL({ dynamic: true, size: 256, format: "png" }))
+  .then(img => {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(164, 146, 100, 0, Math.PI * 2, false);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(img, 64, 46, 200, 200);
+    ctx.restore();
+    let checkpoint = Number(xp.split(" / ")[1]);
+    let xpnumber = Number(xp.split(" / ")[0]);
+    let oldcheckpoint = checkpoint - 50 - (level * 10);
+    let number = 2 + (((xpnumber - oldcheckpoint) - (checkpoint - oldcheckpoint)) / (((xpnumber - oldcheckpoint) + (checkpoint - oldcheckpoint)) / 2 ));
+    let xpcircle = Number(number.toFixed(5));
+    ctx.beginPath();
+    ctx.arc(164, 146, 107, 0, Math.PI * xpcircle, false);
+    ctx.strokeStyle = "#03e8fc";
+    ctx.lineWidth = 5;
+    ctx.stroke();
+    //ctx.restore();
+  });
+  
+  ctx.font = "30px Impact";
+  ctx.fillStyle = "white";
+  ctx.textAlign = "center";
+  
+  let username = ctx.measureText(user.username);
+  let discriminator = ctx.measureText("#" + user.discriminator);
+  let ranktext = ctx.measureText("#" + rank);
+  let leveltext = ctx.measureText(level);
+  let xptext = ctx.measureText(xp);
+  
+  ctx.fillText(user.username, 490 + username.width / 2, 109);
+  
+  ctx.fillStyle = "#858585";
+  
+  ctx.fillText("#" + user.discriminator, 490 + username.width + discriminator.width / 2, 109);
+  
+  ctx.fillStyle = "white";
+  
+  ctx.fillText("#" + rank, 525 + ranktext.width / 2, 147);
+  ctx.fillText(level, 535 + leveltext.width / 2, 181);
+  ctx.fillText(xp, 475 + xptext.width / 2, 217);
+  
+  ctx.font = "15px Impact";
+  
+  let guildname = ctx.measureText(guild.name);
+  
+  ctx.fillText(guild.name, -60 + guildname.width, 285);
+  
+  let buffer = canvas.toBuffer("image/png");
+  fs.writeFileSync("/app/temp/" + name + ".png", buffer);
+}
