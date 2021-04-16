@@ -45,9 +45,9 @@ exports.run = async (client, message, args) => {
         let type = typeof (evaled);
         if (func.length < 1000 && !noembed) {
             const embed = new Discord.MessageEmbed()
-                .addField('EVAL', `**Vrsta:** ${type}`)
-                .addField(':inbox_tray: Ulaz', Input)
-                .addField(':outbox_tray: Izlaz', output)
+                .addField('EVAL', `**Type:** ${type}`)
+                .addField(':inbox_tray: Input', Input)
+                .addField(':outbox_tray: Output', output)
                 .setColor(0x80FF00)
                 .setTimestamp();
             message.channel.send({embed}).then(msg => msg.delete({ timeout: 10000 }));
@@ -55,18 +55,18 @@ exports.run = async (client, message, args) => {
             hastebin(func, { extension: ".txt" })
                 .then(res => {
                     const embed = new Discord.MessageEmbed()
-                        .addField('EVAL', `**Vrsta:** ${type}`)
-                        .addField(':inbox_tray: Ulaz', Input)
-                        .addField(':outbox_tray: Izlaz', `Izlaz je bio predugačak pa je uploadan na ${res}`)
+                        .addField('EVAL', `**Type:** ${type}`)
+                        .addField(':inbox_tray: Input', Input)
+                        .addField(':outbox_tray: Output', `Output was too long, so it was uploaded to ${res}`)
                         .setColor(0x80FF00);
                     message.channel.send({embed}).then(msg => msg.delete({ timeout: 10000 }));
                 })
                 .catch(err => {
                     console.log(err);
                     const embed = new Discord.MessageEmbed()
-                        .addField('EVAL', `**Vrsta:** ${type}`)
+                        .addField('EVAL', `**Type:** ${type}`)
                         .addField(':inbox_tray: Input', Input)
-                        .addField(':x: ERROR', `Izlaz je bio predugačak`, true)
+                        .addField(':x: ERROR', `Output was too long`, true)
                         .setColor(0x80FF00);
                     message.channel.send({embed}).then(msg => msg.delete({ timeout: 10000 }));
                 });
@@ -77,8 +77,8 @@ exports.run = async (client, message, args) => {
         const Input = '```js\n' + message.content.slice(6) + '\n```';
         if (errIns.length < 1000 && !noembed) {
             const embed = new Discord.MessageEmbed()
-                .addField('EVAL', `**Vrsta:** Error`)
-                .addField(':inbox_tray: Ulaz', Input)
+                .addField('EVAL', `**Type:** Error`)
+                .addField(':inbox_tray: Input', Input)
                 .addField(':x: ERROR', error, true)
                 .setColor(0x80FF00);
             message.channel.send({embed}).then(msg => msg.delete({ timeout: 10000 }));
@@ -88,7 +88,7 @@ exports.run = async (client, message, args) => {
                     const embed = new Discord.MessageEmbed()
                         .setTitle('Eval Error')
                         .addField('EVAL', `**Vrsta:** Error`)
-                        .addField(':inbox_tray: Ulaz', Input)
+                        .addField(':inbox_tray: Input', Input)
                         .addField(':x: ERROR', '```' + err.name + ': ' + err.message + '```', true)
                         .setURL(res)
                         .setColor(0x80FF00);
@@ -97,17 +97,17 @@ exports.run = async (client, message, args) => {
                 .catch(err => {
                     console.log(err);
                     const embed = new Discord.MessageEmbed()
-                        .addField('Eval', `**Vrsta:** Error`)
-                        .addField(':inbox_tray: Ulaz', Input)
-                        .addField(':x: ERROR', `Izlaz je bio predugačak`, true)
+                        .addField('Eval', `**Type:** Error`)
+                        .addField(':inbox_tray: Input', Input)
+                        .addField(':x: ERROR', `Output was too long`, true)
                         .setColor(0x80FF00);
                     message.channel.send({embed}).then(msg => msg.delete({ timeout: 10000 }));
                 });
         }
     }
     } catch(err) {
-      message.channel.send(`Greška!\n\n${err}`);
-      console.log(`Greška na eval komandi!\n\nGreška:\n\n ${err}`)
+      message.channel.send(`Error!\n\n${err}`);
+      console.log(`Error on eval command!\n\nError:\n\n ${err}`)
     }
 };
 exports.help = {

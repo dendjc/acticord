@@ -1,0 +1,21 @@
+{
+  "name": "bosanski",
+  "default": false,
+  "permission": {
+    "missing": "Nemaš permisiju za korištenje ove komande!"
+  },
+  "embed": {
+    "vote": {
+      "title": "🔼 Glasanje!",
+      "description": "Trebaš glasati da bi koristio ovu komandu! Možeš to uraditi klikom na **VOTE!**\n\n[VOTE](https://top.gg/bot/701151973185159168/vote)",
+      "footer": "Glasanje |"
+    }
+  },
+  "command": {
+    "custommsg": {
+      "noaction": "Nisi odredio/la akciju (__set/get/reset__)",
+      "alreadyset": "Već si podesio/la custom poruku. Možeš je resetovati komandom **{prefix}custommsg reset**"
+    }
+  },
+  "error": "Greška:"
+}

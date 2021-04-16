@@ -65,6 +65,6 @@ typings/
 .c9
 .DS_Store
 Thumbs.db
-json.sqlite
-config.json
+# json.sqlite
+# config.json
 out/

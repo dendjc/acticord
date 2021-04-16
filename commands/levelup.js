@@ -12,8 +12,8 @@ exports.run = async (client, message, args) => {
   }
   let xp = stats.checkpoint - stats.xp;
   let level = stats.level + 1;
-  if(user.id === message.author.id) message.channel.send("Potrebno ti je još " + xp + "xp za " + level + ". level!");
-  else message.channel.send("Tom članu je potrebno još " + xp + "xp za " + level + ". level!");
+  if(user.id === message.author.id) message.channel.send("You need another " + xp + "xp for " + level + ". level!");
+  else message.channel.send("That member needs another " + xp + "xp for " + level + ". level!");
 }
 exports.help = {
   ime: "levelup",

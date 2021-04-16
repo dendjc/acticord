@@ -1,16 +1,16 @@
 const db = require("quick.db");
 
 exports.run = async (client, message, args) => {
-  if(!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Nemaš permisiju za korištenje ove komande!");
+  if(!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("You don't have permission to use this command!");
   
   let channel = await db.fetch(`settings_${message.guild.id}_channel`);
-  if(channel !== null) return message.channel.send("Kanal za level up je već podešen! Možeš ga resetovati komandom **" + client.config.prefix + "resetchannel**");
+  if(channel !== null) return message.channel.send("Level up channel is already set up! You can reset it by typing **" + client.config.prefix + "resetchannel**");
   
   let newchannel = message.mentions.channels.first();
-  if(!newchannel) return message.channel.send("Nisi označio/la kanal!");
+  if(!newchannel) return message.channel.send("You didn't mention the channel!");
   
   db.set(`settings_${message.guild.id}_channel`, newchannel.id);
-  message.channel.send("Podesio/la si kanal za level up (" + newchannel.toString() + ")");
+  message.channel.send("You set up the channel (" + newchannel.toString() + ")");
 }
 exports.help = {
   ime: "setchannel",

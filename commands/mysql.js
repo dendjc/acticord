@@ -5,8 +5,8 @@ exports.run = async (client, message, args) => {
   if(!code) return;
   
   client.con.query(code, function(err, result) {
-    if(err) return message.channel.send("Greška:\n" + err.toString().replace("edoedo27_db210", "baza"));
-    else return message.channel.send("__Rezultat:__\n**affectedRows:** __" + result.affectedRows + "__\n**changedRows:** __" + result.changedRows + "__");
+    if(err) return message.channel.send("Error:\n" + err.toString().replace("edoedo27_db210", "baza"));
+    else return message.channel.send("__Result:__\n**affectedRows:** __" + result.affectedRows + "__\n**changedRows:** __" + result.changedRows + "__");
   });
 }
 exports.help = {

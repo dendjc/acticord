@@ -5,8 +5,8 @@ exports.run = async (client, message, args) => {
     let embed = new Discord.MessageEmbed()
     .setTitle("⌨ HELP")
     .setColor("BLUE")
-    .addField("💳 Osnovne komande", "`" + client.config.prefix + "help main`")
-    .addField("👤 Administratorske komande", "`" + client.config.prefix + "help admin`")
+    .addField("💳 Main commands", "`" + client.config.prefix + "help main`")
+    .addField("👤 Admin commands", "`" + client.config.prefix + "help admin`")
     .setFooter("HELP | " + client.config.name, client.user.displayAvatarURL())
     .setTimestamp();
 
@@ -20,7 +20,7 @@ exports.run = async (client, message, args) => {
       content += `**${client.config.prefix}${c.help.koristenje}** - ${c.help.opis}\n`;
     });
     let mainEmbed = new Discord.MessageEmbed()
-    .setTitle("💳 Osnovne komande!")
+    .setTitle("💳 Main commands!")
     .setColor("BLUE")
     .setDescription(content)
     .setFooter("HELP | " + client.config.name, client.user.displayAvatarURL())
@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
     message.channel.send(mainEmbed);
   } 
   else if (args[0] === "admin") {
-    if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Nemaš permisiju za korištenje ove komande!");
+    if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("You don't have permission to view this category!");
     let commands = client.commands.filter(c => c.help.admin === true && c.help.ispisano === true);
     let cmd = commands.array();
     let content = "";
@@ -37,7 +37,7 @@ exports.run = async (client, message, args) => {
       content += `**${client.config.prefix}${c.help.koristenje}** - ${c.help.opis}\n`;
     });
     let adminEmbed = new Discord.MessageEmbed()
-    .setTitle("👤 Administratorske komande!")
+    .setTitle("👤 Admin commands!")
     .setColor("BLUE")
     .setDescription(content)
     .setFooter("HELP | " + client.config.name, client.user.displayAvatarURL())
@@ -45,7 +45,7 @@ exports.run = async (client, message, args) => {
 
     message.channel.send(adminEmbed);
   } 
-  else return message.channel.send("Nepravilan unos!");
+  else return message.channel.send("Incorrect input!");
 };
 exports.help = {
   ime: "help",

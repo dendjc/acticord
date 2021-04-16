@@ -5,7 +5,7 @@ const fs = require("fs");
 
 exports.run = async (client, message, args) => {
   let user = message.mentions.users.first() || message.author;
-  if(user.bot) return message.channel.send("Ne možeš vidjeti statistiku bota!");
+  if(user.bot) return message.channel.send("You cannot see stats of a bot!");
   let stats = await db.fetch(`stats_${message.guild.id}_${user.id}`);
   if (stats === null) {
     stats = {

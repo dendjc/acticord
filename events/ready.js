@@ -4,10 +4,10 @@ const cron = require("node-cron");
 
 module.exports = async (client) => {
   console.log("<---------------- ACTICORD ---------------->");
-  console.log("Bot je pokrenut!");
-  console.log("Broj servera: " + client.guilds.cache.size);
-  console.log("Broj članova: " + client.users.cache.size);
-  console.log("Broj kanala: " + client.channels.cache.size);
+  console.log("The bot is ready!");
+  console.log("Server count: " + client.guilds.cache.size);
+  console.log("Member count: " + client.users.cache.size);
+  console.log("Channel count: " + client.channels.cache.size);
   console.log("<------------------------------------------>");
   
   setInterval(() => client.dbl.postStats(client.guilds.cache.size), 1800000);
@@ -24,7 +24,7 @@ module.exports = async (client) => {
           let embed = new Discord.MessageEmbed()
           .setTitle("Double Weekend event!")
           .setColor("#ffff00")
-          .setDescription("**Sretan vikend!**\nAktiviran je Double XP koji će trajati do ponedjeljka!")
+          .setDescription("**Happy weekend!**\nDouble XP is activated which will last till Monday!\n(grab yourself some XP)")
           .setImage("https://apis.eu.org/content/images/doubleweekend.png")
           .setFooter("Double Weekend | " + client.config.name, client.user.displayAvatarURL())
           .setTimestamp();

@@ -58,7 +58,7 @@ fs.readdir("./events/", (err, files) => {
     if(!file.endsWith(".js")) return;
     const event = require(`./events/${file}`);
     const eventname = file.split(".")[0];
-    console.log("[ACTICORD] Učitavam event " + eventname)
+    console.log("[ACTICORD] Loading event " + eventname)
     client.on(eventname, event.bind(null, client));
     delete require.cache[require.resolve(`./events/${file}`)];
   })
@@ -72,7 +72,7 @@ fs.readdir("./commands/", (err, files) => {
     if(!file.endsWith(".js")) return;
     const props = require(`./commands/${file}`);
     const cmdname = file.split(".")[0];
-    console.log("[ACTICORD] Učitavam komandu " + cmdname);
+    console.log("[ACTICORD] Loading event " + cmdname);
     client.commands.set(cmdname, props);
   })
 })

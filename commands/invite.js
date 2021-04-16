@@ -4,14 +4,14 @@ exports.run = async (client, message, args) => {
   let embed = new Discord.MessageEmbed()
   .setAuthor("Invite link!", message.author.displayAvatarURL())
   .setColor("BLUE")
-  .setDescription("Da pozoveš ovog bota na svoj server, klikni na INVITE!\n\n[INVITE](https://discordapp.com/oauth2/authorize?&client_id=701151973185159168&scope=bot&permissions=510976)")
+  .setDescription("To invite this bot on your server, smash that INVITE button!\n\n[INVITE](https://discordapp.com/oauth2/authorize?&client_id=701151973185159168&scope=bot&permissions=510976)")
   .setFooter("Invite | " + client.config.name, client.user.displayAvatarURL())
   .setTimestamp();
   
   message.author.send(embed).then(() => {
-    message.channel.send("Invite link ti je poslan u DM!");
+    message.channel.send("Invite link has been sent to your DM!");
   })
-  .catch(err => message.channel.send("Nisam ti mogao poslati poruku. Vjerovatno ti je DM zaključan!"));
+  .catch(err => message.channel.send("I could not send you the message. Your DM is probably locked!"));
 }
 exports.help = {
   ime: "invite",

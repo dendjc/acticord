@@ -57,7 +57,7 @@ module.exports = async (client, message) => {
         else {
           if(levelmsg === null) {
             let levelEmbed = new Discord.MessageEmbed()
-            .setAuthor("Čestitam, " + message.author.tag + ", sada si " + level + ". level!", message.author.displayAvatarURL())
+            .setAuthor("Congratulations, " + message.author.tag + ", you are " + level + ". level now!", message.author.displayAvatarURL())
             .setColor("BLUE")
             .setFooter("Level Up | " + client.config.name, client.user.displayAvatarURL())
             .setTimestamp();
@@ -67,7 +67,7 @@ module.exports = async (client, message) => {
             channel = message.guild.channels.cache.get(channel);
             if(channel) {
               let channelEmbed = new Discord.MessageEmbed()
-              .setAuthor("Čestitam, " + message.author.tag + ", sada si " + level + ". level!", message.author.displayAvatarURL())
+              .setAuthor("Congratulations, " + message.author.tag + ", you are " + level + ". level now!", message.author.displayAvatarURL())
               .setColor("BLUE")
               .setImage("https://apis.eu.org/content/images/levelup.jpg")
               .setFooter("Level Up | " + client.config.name, client.user.displayAvatarURL())

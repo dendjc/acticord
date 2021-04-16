@@ -11,17 +11,17 @@ exports.run = async (client, message, args) => {
     ghost: client.guilds.cache.filter(g => g.memberCount == 2).size
   }
   let embed = new Discord.MessageEmbed()
-  .setTitle("📈 Statistika bota!")
+  .setTitle("📈 Bot stats!")
   .setColor("BLUE")
-  .addField("🏘 Ukupan broj servera", "`" + client.guilds.cache.size + "`")
-  .addField("👥 Broj korisnika", "`" + client.users.cache.size + "`")
-  .addField("🏢 Broj servera sa preko 50000 članova", "`" + guilds.ultra + "`")
-  .addField("🏩 Broj servera sa preko 10000 i manje od 50000 članova", "`" + guilds.veryhigh + "`")
-  .addField("🏫 Broj servera sa preko 1000 i manje od 10000 članova", "`" + guilds.high + "`")
-  .addField("🏡 Broj servera sa preko 500 i manje od 1000 članova", "`" + guilds.medium + "`")
-  .addField("🏠 Broj servera sa manje od 500 članova", "`" + guilds.low + "`")
-  .addField('🏚 Broj "ghost" servera (sa 2 člana)', "`" + guilds.ghost + "`")
-  .setFooter("Statistika | " + client.config.name, client.user.displayAvatarURL())
+  .addField("🏘 Number of all servers", "`" + client.guilds.cache.size + "`")
+  .addField("👥 Number of the users", "`" + client.users.cache.size + "`")
+  .addField("🏢 Number of the servers with more than 50000 members", "`" + guilds.ultra + "`")
+  .addField("🏩 Number of the servers with more than 10000 and less than 50000 members", "`" + guilds.veryhigh + "`")
+  .addField("🏫 Number of the servers with more than 1000 and less than 10000 members", "`" + guilds.high + "`")
+  .addField("🏡 Number of the servers with more than 500 and less than 1000 members", "`" + guilds.medium + "`")
+  .addField("🏠 Number of the servers with less than 500 members", "`" + guilds.low + "`")
+  .addField('🏚 Number of the "ghost" servers (with 2 members)', "`" + guilds.ghost + "`")
+  .setFooter("Stats | " + client.config.name, client.user.displayAvatarURL())
   .setTimestamp();
   
   message.channel.send(embed);

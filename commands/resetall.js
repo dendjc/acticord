@@ -5,8 +5,8 @@ exports.run = async (client, message, args) => {
   if(message.author.id !== message.guild.ownerID) return message.channel.send("Nemaš permisiju za korištenje ove komande!");
   
   let embed = new Discord.MessageEmbed()
-  .setTitle("Resetovanje aktivnosti servera!")
-  .setDescription("Da li želiš resetovati svu aktivnost na serveru?\nOva akcija će resetovati aktivnost svih članova na ovom serveru.\nDa nastaviš, reaguj na ovu poruku sa ✅. Imaš 30 sekundi za reakciju ili će se ova akcija poništiti.")
+  .setTitle("Reset server activity!")
+  .setDescription("Do you want to reset activity of this server?\nThis action will reset stats of all members.\nTo continue, react on this message with ✅. You have 30 seconds or your reset request will cancel.")
   .setColor("BLUE")
   .setFooter("Reset | " + client.config.name, client.user.displayAvatarURL())
   .setTimestamp();
@@ -24,13 +24,13 @@ exports.run = async (client, message, args) => {
         broj++;
       }
       let embed2 = embed
-      .setDescription("Aktivnost na serveru je resetovana!\nBroj obrisanih računa: " + broj);
+      .setDescription("Server activity is reset!\nNumber of deleted accounts: " + broj);
     
       msg.edit(embed2);
     }
     else {
       msg.delete();
-      message.channel.send("Isteklo je vrijeme za reakciju!")
+      message.channel.send("Time has expired!")
       .then(m => m.delete({ timeout: 5000 }));
     }
   })

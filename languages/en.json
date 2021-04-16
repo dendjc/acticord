@@ -1,0 +1,21 @@
+{
+  "name": "English",
+  "default": true,
+  "permission": {
+    "missing": "You don't have permission to use this command!"
+  },
+  "embed": {
+    "vote": {
+      "title": "🔼 Vote!",
+      "description": "You need to vote to use this command! You can do that by clicking on **VOTE** button!\n\n[VOTE](https://top.gg/bot/701151973185159168/vote)",
+      "footer": "Vote |"
+    }
+  },
+  "command": {
+    "custommsg": {
+      "noaction": "You didn't specify the action (__set/get/reset__)",
+      "alreadyset": "You already set the custom message. You can reset it via **{prefix}custommsg reset** command!"
+    }
+  },
+  "error": "Error"
+}
