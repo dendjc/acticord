@@ -59,7 +59,7 @@ module.exports = async(name, guild, user, rank, level, xp) => {
   
   let guildname = ctx.measureText(guild.name);
   
-  ctx.fillText(guild.name, -60 + guildname.width, 285);
+  ctx.fillText(guild.name, -57 + guildname.width, 285);
   
   let buffer = canvas.toBuffer("image/png");
   fs.writeFileSync("/app/temp/" + name + ".png", buffer);

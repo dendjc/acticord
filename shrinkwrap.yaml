@@ -2,7 +2,7 @@ dependencies:
   canvas: 2.6.1
   dblapi.js: 2.4.0
   discord.js: 12.2.0
-  enmap: 5.2.4
+  enmap: 5.2.9
   express: 4.17.1
   hastebin-gen: 2.0.5
   ms: 2.1.2
@@ -310,14 +310,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
-  /enmap/5.2.4:
+  /enmap/5.2.9:
     dependencies:
       lodash: 4.17.15
     dev: false
     peerDependencies:
       better-sqlite3: ^5.4.1
     resolution:
-      integrity: sha512-YulKPmB3t08i1aBDBDgEew9gAWYWXVuGe8S3DLYRQ+E0FoVxTTzo2iSfcEmUX9DRLuKLDMRLRcbRqX5J0z55Uw==
+      integrity: sha512-PoZU4WQT9+JH4Lq2ImfR8NiGZvWqCJAI58PSyMbT4Whg3khC+vFAXsP4rJfeduOYEFUf19itCtvK5AqcxNAdZQ==
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -1243,7 +1243,7 @@ specifiers:
   canvas: ^2.6.1
   dblapi.js: ^2.4.0
   discord.js: ^12.2.0
-  enmap: ^5.2.4
+  enmap: ^5.2.9
   express: ^4.17.1
   hastebin-gen: ^2.0.5
   ms: ^2.1.2

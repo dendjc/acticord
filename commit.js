@@ -9,13 +9,13 @@ exports.check = function(userid, type, number) {
     fs.readFile("/app/badges/verified.json", function(err, data) {
       if(err) console.log(err);
       let jsondata = JSON.parse(data);
-      if(number == 0) {
+     if(number == 0) {
         let index = jsondata.indexOf(userid);
         jsondata.splice(index, 1);
         let str = JSON.stringify(jsondata);
         fs.writeFile("/app/badges/verified.json", str, function(err) {
           if(err) console.log(err);
-          return true;
+          return true
         });
       }
       else {
