@@ -1,3 +1,6 @@
+<b>NAPOMENA:</b>
+Outdated verzija.
+
 <a href="https://top.gg/bot/701151973185159168" > <img src="https://top.gg/api/widget/701151973185159168.svg" alt="Acticord" /> </a>
 
 Acticord
